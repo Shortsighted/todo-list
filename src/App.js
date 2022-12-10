@@ -10,8 +10,34 @@ class App extends React.Component {
     taskCount: 0
   }
 
-  returnEditFunctions = (event) => {
-    return [this.handleStatusChange, this.handleTaskEdit, event]
+  async fetchTasks(){
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+    const data = await response.json()
+
+    const formattedData = data.map(task => {
+      return {
+        id: this.state.taskCount + task.id,
+        textContent: task.title,
+        content: <p>{task.title}</p>,
+        taskId: task.id,
+        status: task.completed ? 'Done': 'New',
+        editStatus: false
+      }
+    })
+
+    return formattedData
+  }
+
+  handleFetchClick = () => {
+    this.fetchTasks()
+    .then(data => {
+      console.log(data)
+        this.setState({
+            taskDetails: [...this.state.taskDetails,
+                          ...data],
+            taskCount: this.state.taskCount + data.length
+    })})
+        console.log(this.state)
   }
 
   handleSubmit = (event) => {
@@ -28,8 +54,7 @@ class App extends React.Component {
   }
 
   handleStatusChange = (taskId) => {
-    this.setState(() => {
-      return {
+    this.setState({
               ...this.state,
               taskDetails: this.state.taskDetails.map(task => {
                               if(task.id === taskId){
@@ -42,13 +67,11 @@ class App extends React.Component {
                                 return task
                               }
                             })
-      }
     })
   }
   
   handleTaskEdit = (taskId) => {
-    this.setState(() => {
-      return {
+    this.setState({
               ...this.state,
               taskDetails: this.state.taskDetails.map(task => {
                             if(task.id === taskId){
@@ -74,17 +97,22 @@ class App extends React.Component {
                               return task
                             }
                           })
-      }
     })
   }
 
   handleTaskDelete = (taskId) => {
-    this.setState(() => {
-      return {
+    this.setState({
               ...this.state,
               taskDetails: this.state.taskDetails.filter(task => task.id !== taskId),
               taskCount: this.state.taskCount - 1
-      }
+    })
+  }
+
+  handleDeleteAllClick = () => {
+    this.setState({
+      ...this.state,
+      taskDetails: [],
+      taskCount: 0
     })
   }
 
@@ -92,7 +120,9 @@ class App extends React.Component {
     return (
       <>
         <Header onSubmit={this.handleSubmit} 
-                taskCount={this.state.taskCount} />
+                taskCount={this.state.taskCount}
+                deployTasks={this.handleFetchClick}
+                deleteAllTasks={this.handleDeleteAllClick}/>
         <TaskCreator taskDetails={this.state.taskDetails}
                      onStatusClick={this.handleStatusChange}
                      onEditClick={this.handleTaskEdit}

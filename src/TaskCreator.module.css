@@ -62,6 +62,19 @@
     overflow: hidden;
 }
 
+.taskBox input{
+    width: 54%;
+    height: 30px;
+
+    border-radius: 5px;
+    border-color: transparent;
+}
+
+.taskBox input:focus{
+    cursor: text;
+    background-color: #E9EEEC;
+}
+
 .infoBox{
     width: 30%;
     height: 100%;

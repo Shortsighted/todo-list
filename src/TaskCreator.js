@@ -11,7 +11,7 @@ export default class TaskCreator extends React.Component{
     render(){
         return(
             <div className={styles.mainBox}>
-               {this.props.taskDetails.map(task => 
+               {[...this.props.taskDetails].reverse().map(task => 
                     <div className={styles.taskBox}>
                         {task.content}
                         <div className={styles.infoBox}> 

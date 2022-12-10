@@ -30,11 +30,6 @@
     flex-direction: column;
 
     overflow-y: auto;
-    scroll-snap-type: y proximity;
-}
-
-.mainBox > div:last-child{
-    scroll-snap-align: start;
 }
 
 .taskBox{

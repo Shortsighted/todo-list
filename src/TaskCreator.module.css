@@ -1,0 +1,128 @@
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: transparent;
+    box-shadow: inset black;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #CDD7D2;
+
+    box-sizing: border-box;
+    background-clip: content-box;
+
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    cursor: pointer;
+    background-color: rgba(205, 215, 210, 0.75);
+}
+
+.mainBox{
+    width: 80%;
+    height: 65%;
+    
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+    scroll-snap-type: y proximity;
+}
+
+.mainBox > div:last-child{
+    scroll-snap-align: start;
+}
+
+.taskBox{
+    width: 100%;
+    height: 25%;  
+
+    margin: 10px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+    background-color: #CDD7D2;
+    border-radius: 10px;
+}
+
+.taskBox p{
+    width: 55%;
+
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.infoBox{
+    width: 30%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.deleteButton,
+.editButtonActive,
+.editButtonInactive,
+.completionMarkerNew,
+.completionMarkerDone{
+    width: 50%;
+    height: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+    border-radius: 10px;
+    
+    border: 3px solid #E9EEEC;
+}
+
+.deleteButton,
+.editButtonInactive,
+.completionMarkerNew{
+    background-color: #CDD7D2;
+}
+
+.deleteButton:hover,
+.editButtonInactive:hover,
+.completionMarkerNew:hover{
+    cursor: pointer;
+    background-color: rgba(233, 238, 236, 0.55);
+}
+
+.deleteButton:active,
+.editButtonInactive:active,
+.completionMarkerNew:active{
+    cursor: pointer;
+    background-color: rgba(233, 238, 236, 0.85);
+}
+
+.editButtonActive,
+.completionMarkerDone{
+    background-color: #E9EEEC;
+}
+
+.editButtonActive:hover,
+.completionMarkerDone:hover{
+    cursor: pointer;
+    background-color: rgba(233, 238, 236, 0.85);
+}
+
+.editButtonActive:active,
+.completionMarkerDone:active{
+    cursor: pointer;
+    background-color: rgba(233, 238, 236, 0.55);
+}
